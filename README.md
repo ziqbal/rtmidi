@@ -10,7 +10,7 @@ make
 
 ./gomidi 
 
-# or
+OR
 
 ./forever.sh
 
