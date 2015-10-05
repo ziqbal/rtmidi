@@ -1,3 +1,17 @@
+///////
+
+./configure 
+
+make
+
+cd tests
+
+make
+
+./gomidi 1
+
+///////
+
 RtMidi - a set of C++ classes that provide a common API for realtime MIDI input/output across Linux (ALSA & JACK), Macintosh OS X (CoreMidi & JACK) and Windows (Multimedia).
 
 By Gary P. Scavone, 2003-2014.
