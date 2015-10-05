@@ -8,7 +8,11 @@ cd tests
 
 make
 
-./gomidi 1
+./gomidi 
+
+# or
+
+./forever.sh
 
 ///////
 
