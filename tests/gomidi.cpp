@@ -11,16 +11,6 @@
 #include <typeinfo>
 #include "RtMidi.h"
 
-
-
-
-
-void usage( void ) {
-  std::cout << "\nuseage: sysextest N\n";
-  std::cout << "    where N = length of sysex message to send / receive.\n\n";
-  exit( 0 );
-}
-
 // Platform-dependent sleep routines.
 #if defined(__WINDOWS_MM__)
   #include <windows.h>
@@ -56,18 +46,9 @@ void mycallback( double deltatime, std::vector< unsigned char > *message, void *
 int main(  )
 {
 
-
-
-  //std::cout << "BOOT\n" ;
-
   RtMidiOut *midiout = 0;
   RtMidiIn *midiin = 0;
   std::vector<unsigned char> message;
-  //unsigned int nBytes;
-
-  // Minimal command-line check.
-  //if ( argc != 2 ) usage();
-  //nBytes = (unsigned int) atoi( argv[1] );
 
   // RtMidiOut and RtMidiIn constructors
   try {
