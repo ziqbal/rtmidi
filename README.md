@@ -1,5 +1,11 @@
 
-High performance MIDI I/O routing through a WebSocket
+High performance MIDI I/O routing through a WebSocket.
+
+A mashup of RtMidi and a PHP WebSocket library to allow MIDI I/O via javascript.
+
+Tested on Mac 10.10.5 , Hercules DJ Control Instinct USB and Firefox/Safari/Chrome.
+
+Should work on Linux and (with some work) Windows.
 
 ///////
 
