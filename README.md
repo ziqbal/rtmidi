@@ -23,6 +23,8 @@ cd websocket
 
 php process-midi.cpp
 
+Default WebSocket on port 9001
+
 ///////
 
 WebSocket server Copyright (c) 2012, Adam Alexander
