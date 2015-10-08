@@ -1,3 +1,6 @@
+
+High performance MIDI I/O routing through a WebSocket
+
 ///////
 
 ./configure 
