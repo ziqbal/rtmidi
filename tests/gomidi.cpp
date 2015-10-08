@@ -103,6 +103,7 @@ bool chooseMidiPort( RtMidi *rtmidi )
       std::cout << "No input ports available!" << std::endl;
     else
       std::cout << "No output ports available!" << std::endl;
+    SLEEP( 1000 ); 
     return false;
   }
 
