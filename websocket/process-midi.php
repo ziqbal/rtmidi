@@ -27,7 +27,8 @@ class echoServer extends WebSocketServer {
 
 		$total = count( $this->users ) ;
 
-		$this->send( $user , "$t OK $total" ) ;
+		//$this->send( $user , "$t OK $total" ) ;
+		$this->send( $user , '{}' ) ;
 
 	}
 
