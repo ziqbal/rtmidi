@@ -4,6 +4,9 @@
 #include <typeinfo>
 #include "RtMidi.h"
 
+#include <sys/types.h>
+#include <sys/socket.h>
+
 #include <unistd.h>
 #define SLEEP( milliseconds ) usleep( ( unsigned long ) ( milliseconds * 1000.0) )
 
@@ -20,7 +23,6 @@ void mycallback( double deltatime , std::vector< unsigned char > *message , void
 
 /*
     unsigned int nBytes = message->size( ) ;
-
 
     for ( unsigned int i = 0 ; i < nBytes ; i++ ) {
     
