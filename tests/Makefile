@@ -11,10 +11,10 @@ vpath %.o $(OBJECT_PATH)
 OBJECTS	=	RtMidi.o
 
 CC       = g++
-DEFS     =   -D__MACOSX_CORE__
+DEFS     =   -D__LINUX_ALSA__
 CFLAGS   = -O3 -Wall -Wextra
 CFLAGS  += -I$(INCLUDE) -I$(INCLUDE)/include
-LIBRARY  = -framework CoreMIDI -framework CoreFoundation -framework CoreAudio
+LIBRARY  = -lpthread -lasound 
 
 %.o : $(SRC_PATH)/%.cpp
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@

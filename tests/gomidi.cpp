@@ -1,45 +1,41 @@
-//*****************************************//
-//  sysextest.cpp
-//  by Gary Scavone, 2003-2005.
-//
-//  Simple program to test MIDI sysex sending and receiving.
-//
-//*****************************************//
 
 #include <iostream>
 #include <cstdlib>
 #include <typeinfo>
 #include "RtMidi.h"
 
-// Platform-dependent sleep routines.
-#if defined(__WINDOWS_MM__)
-  #include <windows.h>
-  #define SLEEP( milliseconds ) Sleep( (DWORD) milliseconds ) 
-#else // Unix variants
-  #include <unistd.h>
-  #define SLEEP( milliseconds ) usleep( (unsigned long) (milliseconds * 1000.0) )
-#endif
+#include <unistd.h>
+#define SLEEP( milliseconds ) usleep( ( unsigned long ) ( milliseconds * 1000.0) )
 
-// This function should be embedded in a try/catch block in case of
-// an exception.  It offers the user a choice of MIDI ports to open.
-// It returns false if there are no ports available.
-bool chooseMidiPort( RtMidi *rtmidi );
+bool chooseMidiPort( RtMidi *rtmidi ) ;
 
 long long frame = 0 ;
 
+void mycallback( double deltatime , std::vector< unsigned char > *message , void * ) {
 
-void mycallback( double deltatime, std::vector< unsigned char > *message, void * /*userData*/ )
-{
-  unsigned int nBytes = message->size();
-  std::cout << "x," << frame << "," ;
-  for ( unsigned int i=0; i<nBytes; i++ )
-    std::cout << (int)message->at(i) << ",";
+    std::cout << ( int )message->at( 0 ) << "," ;
+    std::cout << ( int )message->at( 1 ) << "," ;
+    std::cout << ( int )message->at( 2 ) << "," ;
+    std::cout << std::fixed << deltatime << std::endl ;
+
+/*
+    unsigned int nBytes = message->size( ) ;
 
 
-  if ( nBytes > 0 )
-    std::cout << deltatime << ",y" << std::endl;
+    for ( unsigned int i = 0 ; i < nBytes ; i++ ) {
+    
+        std::cout << ( int )message->at( i ) << "," ;
 
-  frame++;
+    }
+
+    if ( nBytes > 0 ) {
+
+        std::cout << deltatime << std::endl ;
+
+    }
+
+*/
+
 }
 
 //int main( int argc, char *argv[] )
@@ -77,7 +73,13 @@ int main(  )
   message.push_back( 0xF6 );
   midiout->sendMessage( &message );
 
-  SLEEP( 60000 ); 
+  //SLEEP( 60000 ); 
+
+  while( true ) {
+
+    SLEEP( 10000 ) ;
+
+  }
 
   // Clean up
  cleanup:
@@ -113,20 +115,24 @@ bool chooseMidiPort( RtMidi *rtmidi )
   else {
     for ( i=0; i<nPorts; i++ ) {
       portName = rtmidi->getPortName(i);
+
       if ( isInput )
         std::cout << "  Input port #" << i << ": " << portName << '\n';
       else
         std::cout << "  Output port #" << i << ": " << portName << '\n';
     }
 
+/*
     do {
       std::cout << "\nChoose a port number: ";
       std::cin >> i;
     } while ( i >= nPorts );
+*/
   }
 
   std::cout << std::endl;
-  rtmidi->openPort( i );
+  //rtmidi->openPort( i );
+  rtmidi->openPort( 1 );
 
   return true;
 }
