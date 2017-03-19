@@ -7,6 +7,9 @@ Tested on Mac 10.10.5 , Hercules DJ Control Instinct USB and Firefox/Safari/Chro
 
 Should work on Linux and (with some work) Windows.
 
+EDIT:
+for fedora 25
+sudo yum install alsa-lib-devel
 ///////
 
 ./configure 
