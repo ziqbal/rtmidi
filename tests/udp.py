@@ -4,7 +4,7 @@ import fileinput
 
 import socket
 UDP_IP = "192.168.1.7"
-UDP_PORT = 6969
+UDP_PORT = 9696
 MESSAGE = "Hello, World!"
 
 sock = socket.socket( socket.AF_INET, socket.SOCK_DGRAM ) 
