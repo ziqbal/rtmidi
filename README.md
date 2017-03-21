@@ -10,6 +10,8 @@ Should work on Linux and (with some work) Windows.
 EDIT:
 for fedora 25
 sudo yum install alsa-lib-devel
+
+Also, in case the program tests/gomidi doe not get found by the tests/Makefile then use the tests/Makefile-BAK1 instead.
 ///////
 
 ./configure 
