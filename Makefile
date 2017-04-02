@@ -8,7 +8,7 @@ OBJECTS	= RtMidi.o
 
 LIBNAME = librtmidi
 STATIC = $(LIBNAME).a
-SHARED = librtmidi.dylib
+SHARED = librtmidi.so
 RELEASE = 2.1.0
 MAJOR = 2
 LIBRARIES = $(STATIC) $(SHARED)
@@ -17,7 +17,7 @@ CC       = g++
 AR       = /usr/bin/ar
 RANLIB   = ranlib
 
-DEFS     =   -D__MACOSX_CORE__
+DEFS     =   -D__LINUX_ALSA__
 CFLAGS   = -O3 -Wall -Wextra -Iinclude -fPIC
 
 PREFIX   = /usr/local
@@ -30,11 +30,11 @@ tests:
 $(LIBRARIES): $(OBJECTS)
 	$(AR) ruv $(STATIC) $(OBJECTS)
 	ranlib $(STATIC)
-	$(CC) -fPIC -dynamiclib -o librtmidi.$(RELEASE).dylib $(OBJECTS) -framework CoreMIDI -framework CoreFoundation -framework CoreAudio
-	$(LN) -sf librtmidi.$(RELEASE).dylib $(SHARED)
-	$(LN) -sf librtmidi.$(RELEASE).dylib $(SHARED).$(MAJOR)
+	$(CC) -fPIC -shared -Wl,-soname,$(SHARED).$(MAJOR) -o $(SHARED).$(RELEASE) $(OBJECTS) -lpthread -lasound 
+	$(LN) -sf librtmidi.so.$(RELEASE) $(SHARED)
+	$(LN) -sf librtmidi.so.$(RELEASE) $(SHARED).$(MAJOR)
 
-#	$(CC) -shared $(OBJECTS) -o $(SHARED) -framework CoreMIDI -framework CoreFoundation -framework CoreAudio
+#	$(CC) -shared $(OBJECTS) -o $(SHARED) -lpthread -lasound 
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $@
@@ -44,9 +44,9 @@ $(LIBRARIES): $(OBJECTS)
 
 install: all
 	install --mode=755 $(STATIC) $(PREFIX)/lib/
-	install --mode=755 librtmidi.$(RELEASE).dylib $(PREFIX)/lib/
-	$(LN) -sf librtmidi.$(RELEASE).dylib $(PREFIX)/lib/$(SHARED)
-	$(LN) -sf librtmidi.$(RELEASE).dylib $(PREFIX)/lib/$(SHARED).$(MAJOR)
+	install --mode=755 librtmidi.so.$(RELEASE) $(PREFIX)/lib/
+	$(LN) -sf librtmidi.so.$(RELEASE) $(PREFIX)/lib/$(SHARED)
+	$(LN) -sf librtmidi.so.$(RELEASE) $(PREFIX)/lib/$(SHARED).$(MAJOR)
 	install --mode=644 $(LIBNAME).pc $(PREFIX)/lib/pkgconfig
 	install --mode=755 rtmidi-config $(PREFIX)/bin/
 	install --mode=644 RtMidi.h RtError.h $(PREFIX)/include
@@ -57,13 +57,13 @@ uninstall:
 	-@rm -vf $(PREFIX)/bin/rtmidi-config
 
 clean : 
-	$(RM) -f $(LIBRARIES) librtmidi.$(RELEASE).dylib $(SHARED)*
+	$(RM) -f $(LIBRARIES) librtmidi.so.$(RELEASE) $(SHARED)*
 	$(RM) -f $(OBJECTS)
 	$(RM) -f *~
 	cd tests && $(MAKE) clean
 
 distclean:
-	$(RM) -f $(LIBRARIES) librtmidi.$(RELEASE).dylib $(SHARED)*
+	$(RM) -f $(LIBRARIES) librtmidi.so.$(RELEASE) $(SHARED)*
 	$(RM) -f $(OBJECTS)
 	$(RM) -f *~
 	$(RM) -rf config.log config.status autom4te.cache Makefile rtmidi-config $(LIBNAME).pc

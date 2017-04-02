@@ -4,9 +4,9 @@ if (test "x$#" != "x1") ; then
   exit;
 fi
 
-LIBRARY="-framework CoreMIDI -framework CoreFoundation -framework CoreAudio"
+LIBRARY="-lpthread -lasound "
 CXXFLAGS="-O3 -Wall -Wextra"
-CPPFLAGS="  -D__MACOSX_CORE__"
+CPPFLAGS="  -D__LINUX_ALSA__"
 
 if (test "x$1" = "x--libs") ; then
   echo "$LIBRARY -lrtmidi"
