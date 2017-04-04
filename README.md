@@ -1,4 +1,3 @@
-
 High performance MIDI I/O routing through a WebSocket.
 
 A mashup of RtMidi and a PHP WebSocket library to allow MIDI I/O via javascript.
