@@ -3,8 +3,8 @@
 import fileinput
 
 import socket
-UDP_IP = "192.168.1.2"
-#UDP_IP = "127.0.0.1"
+#UDP_IP = "192.168.1.2"
+UDP_IP = "127.0.0.1"
 UDP_PORT = 9696
 MESSAGE = "Hello, World!"
 
@@ -14,6 +14,4 @@ sock.sendto( MESSAGE , ( UDP_IP , UDP_PORT ) )
 print( UDP_IP + ":" + str( UDP_PORT ) )
 
 for rline in fileinput.input( ) :
-    line = rline.strip( )
-    #print( line )
-    sock.sendto( line , ( UDP_IP , UDP_PORT ) )
+    sock.sendto( rline.strip( ) , ( UDP_IP , UDP_PORT ) )

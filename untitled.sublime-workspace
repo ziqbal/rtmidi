@@ -299,7 +299,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 207.0,
+		"height": 252.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -324,7 +324,7 @@
 				"Set Syntax: SQL"
 			]
 		],
-		"width": 485.0
+		"width": 392.0
 	},
 	"console":
 	{
@@ -344,10 +344,12 @@
 	},
 	"expanded_folders":
 	[
-		"/www/_craft_/rtmidi"
+		"/var/www/html/_craft_/rtmidi",
+		"/var/www/html/_craft_/rtmidi/tests"
 	],
 	"file_history":
 	[
+		"/var/www/html/_craft_/rtmidi/tests/udp.py",
 		"/www/_craft_/paparazzi/scripts/test.py",
 		"/www/_craft_/paparazzi/src/000800-screen.php",
 		"/www/_craft_/paparazzi/scripts/upload.sh",
@@ -474,8 +476,7 @@
 		"/www/_craft_/mercury/functions/_sql-row.php",
 		"/www/_craft_/mercury/functions/_log-row.php",
 		"/www/_craft_/mercury/functions/_email-parse.php",
-		"/www/_craft_/mercury/scripts/_db-state1-posts.php",
-		"/www/_craft_/mercury/scripts/_db-state0-settokens.php"
+		"/www/_craft_/mercury/scripts/_db-state1-posts.php"
 	],
 	"find":
 	{
