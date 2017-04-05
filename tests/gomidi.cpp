@@ -21,6 +21,7 @@ void mycallback( double deltatime , std::vector< unsigned char > *message , void
     std::cout << ( int )message->at( 2 ) << "," ;
     std::cout << std::fixed << deltatime << std::endl ;
 
+
 /*
     unsigned int nBytes = message->size( ) ;
 
