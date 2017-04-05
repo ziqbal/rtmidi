@@ -4,6 +4,20 @@ import commands
 import sys
 import os
 
+
+import socket
+#UDP_IP = "192.168.1.2"
+UDP_IP = "127.0.0.1"
+UDP_PORT = 9696
+MESSAGE = "Hello, World!"
+
+sock = socket.socket( socket.AF_INET, socket.SOCK_DGRAM ) 
+sock.sendto( MESSAGE , ( UDP_IP , UDP_PORT ) )
+
+print( UDP_IP + ":" + str( UDP_PORT ) )
+
+
+
 pygame.midi.init( )
 
 for x in range( 0 , pygame.midi.get_count( ) ) :
@@ -16,7 +30,6 @@ usbMonitor = commands.getoutput( "dmesg | grep -i hercules" )
 frame = 0
 
 msgc = 1
-
 
 controlRightWheelX = 0
 controlRightWheelXPlus = [176,51,1,0]
@@ -47,7 +60,7 @@ while True :
             mt = message[ 1 ]
 
             cc = 0 
-            
+
             if( mk == controlRightWheelPlus ) :
                 controlRightWheel=controlRightWheel+1
                 cc = controlRightWheel
@@ -88,8 +101,10 @@ while True :
                 controlLeftPitch=controlLeftPitch-1
                 cc = controlLeftPitch
 
+            line = str( mt ) + ","+str(msgc)+"," + str( mk[ 0 ] ) + "," + str( mk[ 1 ] ) + "," + str( mk[ 2 ] ) + ","+str(cc) 
             #print(message)
-            print( str( mt ) + ","+str(msgc)+"," + str( mk[ 0 ] ) + "," + str( mk[ 1 ] ) + "," + str( mk[ 2 ] ) + ","+str(cc) )
+            print( line )
+            sock.sendto( line , ( UDP_IP , UDP_PORT ) ) 
             msgc=msgc+1
 
     frame = frame + 1
