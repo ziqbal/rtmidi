@@ -6,6 +6,12 @@ import os
 
 
 import socket
+
+
+pygame.midi.init( )
+if pygame.midi.get_count( ) < 3 :
+    sys.exit( )
+
 #UDP_IP = "192.168.1.2"
 UDP_IP = "127.0.0.1"
 UDP_PORT = 9696
@@ -18,7 +24,6 @@ print( UDP_IP + ":" + str( UDP_PORT ) )
 
 
 
-pygame.midi.init( )
 
 for x in range( 0 , pygame.midi.get_count( ) ) :
     print pygame.midi.get_device_info( x )
@@ -74,7 +79,6 @@ while True :
                 controlLeftWheel=controlLeftWheel-1
                 cc = controlLeftWheel
 
-
             if( mk == controlRightWheelXPlus ) :
                 controlRightWheelX=controlRightWheelX+1
                 cc = controlRightWheelX
@@ -112,10 +116,10 @@ while True :
     if frame % 1000 == 0 :
         if usbMonitor != commands.getoutput( "dmesg | grep -i hercules" ) :
             #inp.close()
-            #pygame.midi.quit( )
+            pygame.midi.quit( )
             #pygame.quit( )
             #del inp
-            os.system('kill $PPID')
+            os.system( "kill $PPID" )
             #sys.exit( )
 
     pygame.time.wait( 1 )
