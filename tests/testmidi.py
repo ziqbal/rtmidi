@@ -3,10 +3,7 @@ import pygame.midi
 import commands
 import sys
 import os
-
-
 import socket
-
 
 pygame.midi.init( )
 if pygame.midi.get_count( ) < 3 :
@@ -21,9 +18,6 @@ sock = socket.socket( socket.AF_INET, socket.SOCK_DGRAM )
 sock.sendto( MESSAGE , ( UDP_IP , UDP_PORT ) )
 
 print( UDP_IP + ":" + str( UDP_PORT ) )
-
-
-
 
 for x in range( 0 , pygame.midi.get_count( ) ) :
     print pygame.midi.get_device_info( x )
